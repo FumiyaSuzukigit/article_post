@@ -19,7 +19,7 @@ export default function PostsList({ allList }: PostsListProps) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      mutate("/api/posts/all");
+      mutate("/api/posts/all", undefined, { revalidate: true });
     }, 10000);
 
     return () => clearInterval(interval);
