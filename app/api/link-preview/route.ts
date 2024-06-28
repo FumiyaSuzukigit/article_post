@@ -1,6 +1,4 @@
-
 import { NextResponse } from "next/server";
-import axios from "axios";
 import { load } from "cheerio";
 
 export async function GET(request) {
@@ -15,8 +13,12 @@ export async function GET(request) {
   }
 
   try {
-    const response = await axios.get(url);
-    const data = extractMetadata(response.data);
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const html = await response.text();
+    const data = extractMetadata(html);
 
     return NextResponse.json({ success: 1, meta: data }, { status: 200 });
   } catch (error) {
