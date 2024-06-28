@@ -1,34 +1,11 @@
-// "use client";
-
-import useSWR, { mutate } from "swr";
 import Link from "next/link";
-import { useEffect } from "react";
 import { db } from "@/lib/db";
-
-const fetcher = (url) => fetch(url).then((res) => res.json());
 
 interface PostsListProps {
   allList: boolean;
 }
 
 export default async function PostsList({ allList }: PostsListProps) {
-  // const { data: posts, error } = useSWR("/api/posts/all", fetcher, {
-  //   revalidateIfStale: false,
-  //   revalidateOnFocus: true,
-  //   revalidateOnReconnect: true,
-  //   refreshInterval: 5000,
-  // });
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     mutate("/api/posts/all", undefined, { revalidate: true });
-  //   }, 10000);
-  //   return () => clearInterval(interval);
-  // }, []);
-
-  // if (error) return <p>Failed to load posts</p>;
-  // if (!posts) return <p>Loading...</p>;
-
   const posts = await db.post.findMany({
     where: {
       published: true,
