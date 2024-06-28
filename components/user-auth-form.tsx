@@ -19,6 +19,7 @@ export default function UserAuthForm() {
   const [isGithubLoading, setIsGithubLoading] = useState<boolean>(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isGuestLoading, setIsGuestLoading] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
@@ -48,6 +49,29 @@ export default function UserAuthForm() {
       window.location.href = "/dashboard";
     }
   }
+
+  async function onGuestSubmit() {
+    setIsGuestLoading(true);
+
+    const signInResult = await signIn("credentials", {
+      email: "guest@a.com",
+      password: "123456",
+      callbackUrl: "/dashboard",
+      redirect: false,
+    });
+
+    if (!signInResult?.ok) {
+      setIsGuestLoading(false);
+      return toast({
+        title: "ゲストログインに失敗しました",
+        description: "もう一度お試しください",
+        variant: "destructive",
+      });
+    } else {
+      window.location.href = "/dashboard";
+    }
+  }
+
   return (
     <div className="grid gap-6">
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -75,6 +99,11 @@ export default function UserAuthForm() {
           </button>
         </div>
       </form>
+
+      <button className={cn(buttonVariants())} onClick={onGuestSubmit}>
+        {isGuestLoading && <Icon.spinner className="mr-2 animate-spin" />}
+        ゲストログイン
+      </button>
 
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
