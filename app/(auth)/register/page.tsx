@@ -3,7 +3,6 @@ import UserRegisterForm from "@/components/user-register-form";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
-
 export default function Register() {
   return (
     <div className="container grid flex-col lg:grid-cols-2 h-screen w-screen items-center justify-center lg:max-w-none lg:px-0">
@@ -27,7 +26,7 @@ export default function Register() {
           </p>
         </div>
         <UserRegisterForm />
-        <p className="text-center text-muted-foreground px-8 text-sm">
+        {/* <p className="text-center text-muted-foreground px-8 text-sm">
           続けてクリックすれば、私達の
           <Link href={"/terms"} className="underline underline-offset-4">
             利用規約
@@ -37,7 +36,7 @@ export default function Register() {
             プライバシーポリシー
           </Link>
           に同意したことになります。
-        </p>
+        </p> */}
       </div>
     </div>
   );
