@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
 import UserIcon from "@/components/user-icon";
+import LogoutButton from "@/components/logout-button";
 
 export default async function MarketingLayout({
   children,
@@ -31,15 +32,7 @@ export default async function MarketingLayout({
                 >
                   ダッシュボード
                 </Link>
-                <Link
-                  href={"/api/auth/signout"}
-                  className={cn(
-                    buttonVariants({ variant: "secondary", size: "sm" }),
-                    "px-4"
-                  )}
-                >
-                  ログアウト
-                </Link>
+                <LogoutButton />
                 <UserIcon userId={user.id} />
               </div>
             ) : (
