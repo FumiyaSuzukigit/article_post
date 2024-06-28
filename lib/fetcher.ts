@@ -5,7 +5,13 @@ interface FetchError extends Error {
 }
 
 const fetcher = async (url: string) => {
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    headers: {
+      "Cache-Control": "no-cache",
+      Pragma: "no-cache",
+      Expires: "0",
+    },
+  });
   if (!res.ok) {
     const error: FetchError = new Error(
       "An error occurred while fetching the data."
