@@ -11,7 +11,19 @@ interface PostsListProps {
 }
 
 export default function PostsList({ allList }: PostsListProps) {
-  const { data: posts, error } = useSWR("/api/posts/all", fetcher, {});
+  const { data: posts, error } = useSWR("/api/posts/all", fetcher, {
+    revalidateIfStale: false,
+    revalidateOnFocus: true,
+    revalidateOnReconnect: true,
+    refreshInterval: 5000,
+  });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      mutate("/api/posts/all", undefined, { revalidate: true });
+    }, 10000);
+    return () => clearInterval(interval);
+  }, []);
 
   if (error) return <p>Failed to load posts</p>;
   if (!posts) return <p>Loading...</p>;
