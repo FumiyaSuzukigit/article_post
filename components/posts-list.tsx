@@ -10,7 +10,9 @@ interface PostsListProps {
 }
 
 export default function PostsList({ allList }: PostsListProps) {
-  const { data: posts, error } = useSWR("/api/posts/all", fetcher);
+  const { data: posts, error } = useSWR("/api/posts/all", fetcher, {
+    revalidateOnReconnect: true,
+  });
 
   if (error) return <p>Failed to load posts</p>;
   if (!posts) return <p>Loading...</p>;
