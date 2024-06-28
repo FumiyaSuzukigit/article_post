@@ -23,7 +23,7 @@ export default async function DashboardPage() {
       createdAt: true,
     },
     orderBy: {
-      updatedAt: "desc",
+      createdAt: "desc",
     },
   });
   return (

@@ -1,8 +1,8 @@
 import { SiteConfig } from "@/types";
 
 export const siteConfig: SiteConfig = {
-  name: "Post Writer",
-  description: "ブログ投稿ができるwebアプリケーションです。",
+  name: "記事投稿アプリ",
+  description: "記事投稿ができるwebアプリケーションです。",
   url: "http://localhost:3000",
   ogImage: "",
   links: {

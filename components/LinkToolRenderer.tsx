@@ -23,7 +23,6 @@ const LinkToolRenderer: React.FC<{ data: LinkToolData }> = ({ data }) => {
       >
         <div className="flex-1 min-w-0">
           {" "}
-          {/* min-w-0を追加して折り返しを有効に */}
           <h4 className="font-semibold text-lg overflow-hidden text-ellipsis whitespace-nowrap">
             {data.meta.title}
           </h4>

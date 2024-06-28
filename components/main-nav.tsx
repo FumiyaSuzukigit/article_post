@@ -4,6 +4,7 @@ import { NavItem } from "@/types";
 import Link from "next/link";
 import { ReactNode, useState } from "react";
 import MobileNav from "./mobile-nav";
+import { siteConfig } from "@/config/site";
 
 interface MainNavProps {
   items?: NavItem[];
@@ -15,7 +16,9 @@ export default function MainNav({ items }: MainNavProps) {
   return (
     <div className="flex items-center md:gap-10">
       <Link href={"/"} className="hidden md:flex items-center space-x-2">
-        <span className="font-bold hidden sm:inline-block">post Writer</span>
+        <span className="font-bold hidden sm:inline-block">
+          {siteConfig.name}
+        </span>
       </Link>
       <nav className="md:flex gap-6 hidden">
         {items?.map((item, index) => (

@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { buttonVariants } from "./ui/button";
 import { cn } from "@/lib/utils";
@@ -23,7 +22,6 @@ import { Icon } from "./icon";
 interface EditorProps {
   post: Pick<Post, "id" | "title" | "content" | "published">;
 }
-
 export default function Editor({ post }: EditorProps) {
   const ref = useRef<EditorJS>();
   const [isMounted, setIsMounted] = useState<boolean>(false);
@@ -68,7 +66,6 @@ export default function Editor({ post }: EditorProps) {
       holder: "editor",
       onReady() {
         ref.current = editor;
-        console.log("Editor.js is ready");
       },
       placeholder: "ここに記事を書く",
       inlineToolbar: ["link", "bold", "italic"],
@@ -160,17 +157,22 @@ export default function Editor({ post }: EditorProps) {
     });
   };
 
+  const handleLinkClick = (e) => {
+    e.preventDefault();
+    router.push("/dashboard");
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid w-full gap-10">
         <div className="flex w-full items-center justify-between">
           <div className="flex items-center space-x-10">
-            <Link
-              href={"/dashboard"}
+            <button
+              onClick={handleLinkClick}
               className={cn(buttonVariants({ variant: "ghost" }))}
             >
               戻る
-            </Link>
+            </button>
             <button type="button" onClick={togglePublished} className="text-sm">
               {published ? "非公開" : "公開"}
             </button>

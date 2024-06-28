@@ -2,15 +2,15 @@ import { DashboardConfig } from "@/types";
 
 export const dashboardConfig: DashboardConfig = {
   mainNav: [
-    {
-      title: "ドキュメント",
-      href: "/doc",
-    },
-    {
-      title: "サポート",
-      href: "/support",
-      disabled: true,
-    },
+    // {
+    //   title: "ドキュメント",
+    //   href: "/doc",
+    // },
+    // {
+    //   title: "サポート",
+    //   href: "/support",
+    //   disabled: true,
+    // },
   ],
   sidebarNav: [
     {
@@ -18,11 +18,11 @@ export const dashboardConfig: DashboardConfig = {
       href: "/dashboard",
       icon: "post",
     },
-    {
-      title: "お支払い",
-      href: "/dashboard/billing",
-      icon: "billing",
-    },
+    // {
+    //   title: "お支払い",
+    //   href: "/dashboard/billing",
+    //   icon: "billing",
+    // },
     {
       title: "設定",
       href: "/dashboard/settings",

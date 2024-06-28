@@ -11,6 +11,38 @@ const routeContextSchema = z.object({
   }),
 });
 
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { postId: string } }
+) {
+  try {
+    const { postId } = params;
+    if (!postId) {
+      return NextResponse.json(
+        { error: "postId is required" },
+        { status: 400 }
+      );
+    }
+
+    const post = await db.post.findFirst({
+      where: {
+        id: postId,
+      },
+    });
+
+    if (post) {
+      return NextResponse.json(post, { status: 200 });
+    } else {
+      return NextResponse.json({ error: "Post not found" }, { status: 404 });
+    }
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
+}
+
 export async function PATCH(
   req: NextRequest,
   context: z.infer<typeof routeContextSchema>

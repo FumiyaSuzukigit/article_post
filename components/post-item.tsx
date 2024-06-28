@@ -1,6 +1,7 @@
 import { Post } from "@prisma/client";
 import { format } from "date-fns";
 import Link from "next/link";
+import { CheckCircleIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import PostOperations from "./post-operations";
 
 interface PostItemProps {
@@ -23,7 +24,14 @@ export default function PostItem({ post }: PostItemProps) {
           </p>
         </div>
       </div>
-      <PostOperations post={post} />
+      <div className="flex items-center">
+        {post.published ? (
+          <CheckCircleIcon className="h-6 w-6 mr-2 text-green-500" />
+        ) : (
+          <EyeSlashIcon className="h-6 w-6 mr-2 text-red-500" />
+        )}
+        <PostOperations post={post} />
+      </div>
     </div>
   );
 }

@@ -6,10 +6,10 @@ export const marketingConfig: MarketingConfig = {
     //   title: "特徴",
     //   href: "#feature",
     // },
-    {
-      title: "ブログ",
-      href: "/blog",
-    },
+    // {
+    //   title: "ブログ",
+    //   href: "/blog",
+    // },
     // {
     //   title: "価格",
     //   href: "/pricing",
