@@ -1,4 +1,3 @@
-// /lib/fetcher.ts
 interface FetchError extends Error {
   info?: any;
   status?: number;
