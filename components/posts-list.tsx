@@ -1,7 +1,8 @@
 "use client";
 
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import Link from "next/link";
+import { useEffect } from "react";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -15,6 +16,14 @@ export default function PostsList({ allList }: PostsListProps) {
     revalidateOnReconnect: true,
     refreshInterval: 5000,
   });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      mutate("/api/posts/all");
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   if (error) return <p>Failed to load posts</p>;
   if (!posts) return <p>Loading...</p>;
