@@ -17,7 +17,15 @@ export async function GET() {
         updatedAt: "desc",
       },
     });
-    return NextResponse.json(posts);
+    return NextResponse.json(posts, {
+      headers: {
+        "Cache-Control":
+          "no-store, no-cache, must-revalidate, proxy-revalidate",
+        Pragma: "no-cache",
+        Expires: "0",
+        "Surrogate-Control": "no-store",
+      },
+    });
   } catch (err) {
     console.error("Error retrieving posts:", err);
     return NextResponse.json(
