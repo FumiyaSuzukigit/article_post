@@ -11,6 +11,7 @@ export async function GET() {
         id: true,
         title: true,
         updatedAt: true,
+        authorId: true,
       },
       orderBy: {
         updatedAt: "desc",
