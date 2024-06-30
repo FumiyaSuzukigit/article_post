@@ -1,5 +1,4 @@
-import { siteConfig } from "@/config/site";
-import { getPost } from "./page";
+import { getPost } from "./lib";
 
 export async function generateMetadata({
   params,
@@ -10,7 +9,7 @@ export async function generateMetadata({
 
   if (!post) {
     return {
-      title: "Post Not Found | " + siteConfig.name,
+      title: "Post Not Found | Site Name",
       description: "Post not found",
     };
   }
@@ -20,15 +19,15 @@ export async function generateMetadata({
     : "No content available";
 
   return {
-    title: `${post.title} | ${siteConfig.name}`,
+    title: `${post.title} | Site Name`,
     description: contentSnippet,
     openGraph: {
       title: post.title,
       description: contentSnippet,
-      url: `${siteConfig.url}/post/${params.postId}`,
+      url: `https://example.com/post/${params.postId}`,
       images: [
         {
-          url: `${siteConfig.url}/og.jpg`,
+          url: `https://example.com/og.jpg`,
           width: 1200,
           height: 630,
           alt: `${post.title} Open Graph Image`,
@@ -38,7 +37,7 @@ export async function generateMetadata({
     twitter: {
       title: post.title,
       description: contentSnippet,
-      images: [`${siteConfig.url}/og.jpg`],
+      images: [`https://example.com/og.jpg`],
     },
   };
 }

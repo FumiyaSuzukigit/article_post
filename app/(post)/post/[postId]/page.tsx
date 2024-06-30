@@ -1,21 +1,10 @@
-import { Post } from ".prisma/client";
 import PostPage from "@/components/post-page";
-import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { getPost } from "./lib";
 
 interface PostProps {
   params: { postId: string };
-}
-
-export async function getPost(postId: Post["id"]) {
-  const post = await db.post.findFirst({
-    where: {
-      id: postId,
-    },
-  });
-
-  return post;
 }
 
 export default async function PostPageWrapper({ params }: PostProps) {
@@ -30,10 +19,10 @@ export default async function PostPageWrapper({ params }: PostProps) {
     <div>
       <PostPage
         post={{
-          id: post?.id,
-          title: post?.title,
-          content: post?.content,
-          published: post?.published,
+          id: post.id,
+          title: post.title,
+          content: post.content,
+          published: post.published,
         }}
       />
       <div className="text-center">
