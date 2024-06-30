@@ -15,6 +15,7 @@ export default async function PostLayout({
   children: React.ReactNode;
 }) {
   const user = await getCurrentUser();
+
   return (
     <div>
       <header className="container z-40 bg-background">

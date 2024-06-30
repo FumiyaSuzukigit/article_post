@@ -8,7 +8,7 @@ interface PostProps {
   params: { postId: string };
 }
 
-async function getPost(postId: Post["id"]) {
+export async function getPost(postId: Post["id"]) {
   const post = await db.post.findFirst({
     where: {
       id: postId,
