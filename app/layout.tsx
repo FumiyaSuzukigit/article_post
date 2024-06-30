@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: `%s|${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: ["Fumiya", "Suzuki"],
+  keywords: ["記事", "投稿"],
   authors: [
     {
       name: "FumiyaSuzuki",
